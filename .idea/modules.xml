@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api-catalog/api-catalog.iml" filepath="$PROJECT_DIR$/api-catalog/api-catalog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-movie/api-movie.iml" filepath="$PROJECT_DIR$/api-movie/api-movie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-series/api-series.iml" filepath="$PROJECT_DIR$/api-series/api-series.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apiGateway/apiGateway.iml" filepath="$PROJECT_DIR$/apiGateway/apiGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/esp-back-i-parcial-BOSCHI-JAVIER.iml" filepath="$PROJECT_DIR$/.idea/esp-back-i-parcial-BOSCHI-JAVIER.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eurekaServer/eurekaServer.iml" filepath="$PROJECT_DIR$/eurekaServer/eurekaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-config/ms-config.iml" filepath="$PROJECT_DIR$/ms-config/ms-config.iml" />
+    </modules>
+  </component>
+</project>

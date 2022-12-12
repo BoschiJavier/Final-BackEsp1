@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ms-eurekaServer
+  cloud:
+    config:
+      enable: true
+      uri: http://localhost:8888
