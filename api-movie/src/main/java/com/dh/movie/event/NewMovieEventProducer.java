@@ -8,11 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class NewMovieEventProducer {
-
-   // private static final Logger log = LoggerFactory.getLogger(NewMovieEventProducer.class);
 
     private final RabbitTemplate rabbitTemplate;
 

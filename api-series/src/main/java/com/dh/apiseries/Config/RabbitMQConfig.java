@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    //Nombre Exchange:
     public static final String EXCHANGE_NAME = "mediaExchange";
     public static final String TOPIC_NEW_SERIE = "com.dh.newSeries";
 
@@ -20,7 +19,6 @@ public class RabbitMQConfig {
         return new TopicExchange(EXCHANGE_NAME);
     }
 
-    //me conecto a la cola MQ
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         final var rabbitTemplate = new RabbitTemplate(connectionFactory);
@@ -28,7 +26,6 @@ public class RabbitMQConfig {
         return rabbitTemplate;
     }
 
-    //uSO FORMATO json
     @Bean
     public Jackson2JsonMessageConverter producerJackson2MessageConverter() {
         return new Jackson2JsonMessageConverter();

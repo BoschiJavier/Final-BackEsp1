@@ -15,6 +15,7 @@ public class MovieService {
     private final MovieRepository movieRepository;
     private final NewMovieEventProducer newMovieEventProducer;
 
+
     public MovieService(MovieRepository movieRepository, NewMovieEventProducer newMovieEventProducer) {
         this.movieRepository = movieRepository;
         this.newMovieEventProducer = newMovieEventProducer;
@@ -24,8 +25,8 @@ public class MovieService {
         return movieRepository.findByGenre(genre);
     }
 
-    public Movie save(Movie movie) {
+    public void save(Movie movie) {
+        movieRepository.save(movie);
         newMovieEventProducer.execute(movie);
-        return movieRepository.save(movie);
     }
 }

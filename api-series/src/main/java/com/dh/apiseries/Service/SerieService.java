@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class SerieService {
 
-   // private static final Logger LOG = LoggerFactory.getLogger(SerieService.class);
     private final SerieRepository serieRepository;
     private final NewSerieEventProducer newSerieEventProducer;
 
@@ -23,13 +22,12 @@ public class SerieService {
 
     public List<Serie> getListSeriesByGenre(String genre) {
         List<Serie> series = serieRepository.findByGenre(genre);
-     //   LOG.info("La busqueda fue exitosa: " + series);
         return series;
 
     }
 
     public void save(Serie serie) {
-        serieRepository.save(serie);
+    serieRepository.save(serie);
         newSerieEventProducer.execute(serie);
 
     }

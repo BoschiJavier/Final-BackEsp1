@@ -43,8 +43,6 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(newSerieQueue()).to(appExchange()).with(TOPIC_NEW_SERIE);
     }
 
-    //Relacion exchange, cola y topico(routing key), declaramos la suscripcion, se hace ne el consumidor porque es a este a quien le importa, tambien funciona en el prodcutor pero lo hacemos aca por un tema de orden
-    // todos los msj que quede en el topico de musica y pase por este exchange va a ser destinado a la cola de Movie
 
     @Bean
     public Binding declareBindingSpecificNewMovie() {

@@ -1,5 +1,6 @@
 package com.dh.movie;
 
+import com.dh.movie.event.NewMovieEventProducer;
 import com.dh.movie.model.Movie;
 import com.dh.movie.repository.MovieRepository;
 import org.springframework.boot.CommandLineRunner;

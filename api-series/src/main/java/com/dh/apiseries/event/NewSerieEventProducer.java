@@ -12,6 +12,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,9 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Component
 public class NewSerieEventProducer {
-
-   // private static final Logger log = LoggerFactory.getLogger(NewSerieEventProducer.class);
 
     private final RabbitTemplate rabbitTemplate;
 

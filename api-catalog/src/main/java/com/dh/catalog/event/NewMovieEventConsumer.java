@@ -9,7 +9,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Component;
 
+import java.io.Serial;
+import java.io.Serializable;
+
+@Component
 public class NewMovieEventConsumer {
 
     private final MovieRepositoryMongo movieRepositoryMongo;
@@ -18,13 +24,11 @@ public class NewMovieEventConsumer {
         this.movieRepositoryMongo = movieRepositoryMongo;
     }
 
-    //pasamos el nombre de la cola, no el topico, el ruteo ya lo hizo rabbit en el medio
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NEW_MOVIE)
-    public void execute(NewMovieEventConsumer.Data data) {  //recibo el dato
-        MovieEntity movieNew = new MovieEntity(); // lo mapeo a mi entidad, relacional en este caso
+    public void execute(NewMovieEventConsumer.Data data) {
+        MovieEntity movieNew = new MovieEntity();
         BeanUtils.copyProperties(data.getMovieDto(), movieNew);
-        movieRepositoryMongo.deleteById(data.getMovieDto().getId()); //por si se crea varias veces borro 1ero y despues guardo
-        //lo guardo en mi base de datos, min 38 clase.
+        movieRepositoryMongo.deleteById(data.getMovieDto().getId());
         movieRepositoryMongo.save(movieNew);
     }
 
@@ -32,7 +36,7 @@ public class NewMovieEventConsumer {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Data {
+    public static class Data implements Serializable {
 
         private MovieDto movieDto = new MovieDto();
 
@@ -41,7 +45,11 @@ public class NewMovieEventConsumer {
         @NoArgsConstructor
         @AllArgsConstructor
 
-        public static class MovieDto {
+        public static class MovieDto implements Serializable {
+
+            @Serial
+            private static final long serialVersionUID = 1L;
+
 
             private Long id;
             private String name;

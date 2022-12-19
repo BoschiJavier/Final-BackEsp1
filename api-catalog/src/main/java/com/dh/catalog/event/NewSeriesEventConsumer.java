@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class NewSeriesEventConsumer {
 
     private final SerieRepositoryMongo serieRepositoryMongo;
@@ -21,13 +23,11 @@ public class NewSeriesEventConsumer {
         this.serieRepositoryMongo = serieRepositoryMongo;
     }
 
-    //pasamos el nombre de la cola, no el topico, el ruteo ya lo hizo rabbit en el medio
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NEW_SERIE)
-    public void execute(NewSeriesEventConsumer.Data data) {  //recibo el dato
-        Serie serieNew = new Serie(); // lo mapeo a mi entidad, relacional en este caso
+    public void execute(NewSeriesEventConsumer.Data data) {
+        Serie serieNew = new Serie();
         BeanUtils.copyProperties(data.getSerieDto(), serieNew);
-        serieRepositoryMongo.deleteById(data.getSerieDto().id); //por si se crea varias veces borro 1ero y despues guardo
-        //lo guardo en mi base de datos, min 38 clase.
+        serieRepositoryMongo.deleteById(data.getSerieDto().id);
         serieRepositoryMongo.save(serieNew);
     }
 
@@ -59,7 +59,7 @@ public class NewSeriesEventConsumer {
         @AllArgsConstructor
         public static class SeasonDto {
 
-            private Integer id;
+            private String id;
             private Integer seasonNumber;
             private String genre;
             private List<ChapterDto> chapters = new ArrayList<>();
@@ -72,7 +72,7 @@ public class NewSeriesEventConsumer {
         @AllArgsConstructor
         public static class ChapterDto {
 
-            private Integer id;
+            private String id;
             private String name;
             private Integer number;
             private String urlStream;

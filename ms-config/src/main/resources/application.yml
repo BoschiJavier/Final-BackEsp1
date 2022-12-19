@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/BoschiJavier/esp-back-i-parcial-BOSCHI-JAVIER.git
-          default-label: develop
+          uri: https://github.com/BoschiJavier/Final-BackEsp1.git
+          default-label: main
           force-pull: true
           search-paths: config-data

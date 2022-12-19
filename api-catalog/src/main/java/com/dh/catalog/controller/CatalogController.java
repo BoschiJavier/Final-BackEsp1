@@ -1,6 +1,7 @@
 package com.dh.catalog.controller;
 
 import com.dh.catalog.client.MovieServiceClient;
+import com.dh.catalog.model.MovieEntity;
 import com.dh.catalog.service.CatalogoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,18 +13,19 @@ import java.util.List;
 @RequestMapping("/api/v1/catalog")
 public class CatalogController {
 
-	private final MovieServiceClient movieServiceClient;
 	private final CatalogoService catalogoService;
 
 	public CatalogController(MovieServiceClient movieServiceClient, CatalogoService catalogoService) {
-		this.movieServiceClient = movieServiceClient;
 		this.catalogoService = catalogoService;
 	}
 
+
 	@GetMapping("/{genre}")
-	ResponseEntity<List<MovieServiceClient.MovieDto>> getGenre(@PathVariable String genre) {
-		return ResponseEntity.ok(movieServiceClient.getMovieByGenre(genre));
+	public ResponseEntity<GetCatalogByGenreResponse> getCatalogByGenreResponseOnline(@PathVariable String genre) {
+		return ResponseEntity.ok(catalogoService.getCatalogByGenreResponseOnline(genre));
 	}
+
+
 
 
 	@GetMapping("/offline/{genre}")
